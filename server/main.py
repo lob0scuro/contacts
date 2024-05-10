@@ -22,13 +22,15 @@ class Contacts(db.Model):
 #-------------------UTILS----------------->
 #Encapsulate Model data
 def createCapsule(contactObj):
-    captured = {}
+    captured = []
     for obj in contactObj:
-        captured[obj.id] = {
-            "first_name": obj.first_name,
-            "last_name": obj.last_name,
-            "email": obj.email
-        }
+        captured.append({
+        "id": obj.id,
+        "first_name": obj.first_name,
+        "last_name": obj.last_name,
+        "email": obj.email
+    })
+    
     
     return captured
 
@@ -47,7 +49,7 @@ def get_users():
     
     data = createCapsule(contacts)
 
-    return jsonify(data)
+    return jsonify({"users": data})
 
 
 #CREATE
@@ -64,7 +66,7 @@ def create_user():
         db.session.commit()
 
     data = createCapsule([newContact])
-    return jsonify(data)
+    return jsonify({"created": data})
 
 
 #READ
@@ -74,7 +76,7 @@ def getUser(id):
     if not gotem:
         return createMessage("user not found")
     data = createCapsule([gotem])
-    return jsonify(data)
+    return jsonify({"user": data})
 
 
 #UPDATE
@@ -92,7 +94,8 @@ def updateUser(id):
     notThis.email = email
     db.session.commit()
     
-    return createCapsule([notThis])
+    data = createCapsule([notThis])
+    return jsonify({"updated": data})
 
 
 #DELETE
