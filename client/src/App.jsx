@@ -5,9 +5,9 @@ import "./App.css";
 import axios from "axios";
 
 import ContactTable from "./components/ContactTable";
+import ContactForm from "./components/ContactForm";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [array, setArray] = useState([]);
 
   const fetchAPI = async () => {
@@ -27,6 +27,10 @@ function App() {
 
   return (
     <>
+      <h1>Contact Book</h1>
+      <ContactForm />
+      <hr />
+      <br />
       <ContactTable array={array} />
     </>
   );
