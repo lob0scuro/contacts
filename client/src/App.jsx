@@ -28,10 +28,10 @@ function App() {
   return (
     <>
       <h1>Contact Book</h1>
-      <ContactForm />
+      <ContactForm array={array} setArray={setArray} />
       <hr />
       <br />
-      <ContactTable array={array} />
+      <ContactTable array={array} setArray={setArray} />
     </>
   );
 }

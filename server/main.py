@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 #app set up // module initialization
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///contacts.db"
-CORS(app)
+cors = CORS(app, origins='*')
 db = SQLAlchemy(app)
 
 
@@ -53,7 +53,7 @@ def get_users():
 
 
 #CREATE
-@app.route("/api/create_user", methods=['POST'])
+@app.route("/api/create_user", methods=(['POST']))
 def create_user():
     fetch = request.json
     newContact = Contacts(first_name=fetch.get("first_name"), last_name=fetch.get("last_name"), email=fetch.get("email"))
@@ -66,8 +66,7 @@ def create_user():
         db.session.commit()
 
     data = createCapsule([newContact])
-
-    return jsonify({"created": data})
+    return jsonify({"created": data[0]})
 
 
 #READ

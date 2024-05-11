@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactTable = ({ array }) => {
+const ContactTable = ({ array, setArray }) => {
   const deleteUser = (id) => {
     const url = "http://127.0.0.1:5000/api/delete/" + id;
     const options = {
@@ -11,6 +11,7 @@ const ContactTable = ({ array }) => {
       fetch(url, options)
         .then((response) => {
           alert("User Deleted");
+          setArray(array.filter((user) => user.id !== id));
         })
         .catch((error) => {
           alert(error);

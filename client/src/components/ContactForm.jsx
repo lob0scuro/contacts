@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const ContactForm = () => {
+const ContactForm = ({ array, setArray }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,11 +22,12 @@ const ContactForm = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(content),
     };
-    console.log(JSON.stringify(content));
 
-    fetch(url, config).then((response) => {
-      console.log(response);
-    });
+    fetch(url, config)
+      .then((response) => {
+        response.json();
+      })
+      .then((data) => console.log(data));
   };
 
   return (
