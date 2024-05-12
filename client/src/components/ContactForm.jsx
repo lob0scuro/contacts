@@ -25,9 +25,19 @@ const ContactForm = ({ array, setArray }) => {
 
     fetch(url, config)
       .then((response) => {
-        response.json();
+        return response.json();
       })
-      .then((data) => console.log(data));
+      .then((data) => {
+        //console.log(data);
+        setArray((prevArray) => [...prevArray, data]);
+      })
+      .catch((error) => {
+        alert("Fetch error: ", error);
+      });
+
+    setFirstName("");
+    setLastName("");
+    setEmail("");
   };
 
   return (
@@ -76,7 +86,7 @@ const ContactForm = ({ array, setArray }) => {
         <input
           style={{ fontSize: "1.2rem", fontWeight: "600" }}
           type="submit"
-          value="Submit"
+          value="Add Contact"
         />
       </div>
     </form>

@@ -66,7 +66,7 @@ def create_user():
         db.session.commit()
 
     data = createCapsule([newContact])
-    return jsonify({"created": data[0]})
+    return jsonify(data[0])
 
 
 #READ

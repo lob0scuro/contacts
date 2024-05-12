@@ -35,13 +35,16 @@ const ContactTable = ({ array, setArray }) => {
             <td>{user.last_name}</td>
             <td>{user.email}</td>
             <td>
-              <button>Update</button>
+              <button style={{ fontSize: "0.8rem" }}>
+                <i class="fa-solid fa-pen"></i>
+              </button>
               <button
                 onClick={() => {
                   deleteUser(user.id);
                 }}
+                style={{ backgroundColor: "darkred", fontSize: "0.8rem" }}
               >
-                Delete
+                <i class="fa-solid fa-trash-can"></i>
               </button>
             </td>
           </tr>
