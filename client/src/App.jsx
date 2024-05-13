@@ -9,6 +9,7 @@ import ContactForm from "./components/ContactForm";
 
 function App() {
   const [array, setArray] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const fetchAPI = async () => {
     axios
@@ -25,10 +26,30 @@ function App() {
     fetchAPI();
   }, []);
 
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const openModal = () => {
+    if (!modalOpen) setModalOpen(true);
+  };
+
   return (
     <>
       <h1>Contact Book</h1>
-      <ContactForm array={array} setArray={setArray} />
+
+      {modalOpen ? (
+        <div className="modal">
+          <button className="close" onClick={closeModal}>
+            &times;
+          </button>
+          <div className="modal-content">
+            <ContactForm array={array} setArray={setArray} />
+          </div>
+        </div>
+      ) : (
+        <button onClick={openModal}>Create New Contact</button>
+      )}
       <hr />
       <br />
       <ContactTable array={array} setArray={setArray} />

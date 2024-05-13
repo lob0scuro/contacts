@@ -18,39 +18,43 @@ const ContactTable = ({ array, setArray }) => {
         });
     }
   };
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {array.map((user, index) => (
-          <tr key={index}>
-            <td>{user.first_name}</td>
-            <td>{user.last_name}</td>
-            <td>{user.email}</td>
-            <td>
-              <button style={{ fontSize: "0.8rem" }}>
-                <i class="fa-solid fa-pen"></i>
-              </button>
-              <button
-                onClick={() => {
-                  deleteUser(user.id);
-                }}
-                style={{ backgroundColor: "darkred", fontSize: "0.8rem" }}
-              >
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
-            </td>
+    <>
+      {" "}
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>action</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {array.map((user, index) => (
+            <tr key={index}>
+              <td>{user.first_name}</td>
+              <td>{user.last_name}</td>
+              <td>{user.email}</td>
+              <td>
+                <button style={{ fontSize: "0.8rem" }}>
+                  <i className="fa-solid fa-pen"></i>
+                </button>
+                <button
+                  onClick={() => {
+                    deleteUser(user.id);
+                  }}
+                  style={{ backgroundColor: "darkred", fontSize: "0.8rem" }}
+                >
+                  <i className="fa-solid fa-trash-can"></i>
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 

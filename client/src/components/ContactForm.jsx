@@ -83,6 +83,7 @@ const ContactForm = ({ array, setArray }) => {
           />
         </div>
         <br />
+
         <input
           style={{ fontSize: "1.2rem", fontWeight: "600" }}
           type="submit"
