@@ -80,22 +80,22 @@ def getUser(id):
 
 
 #UPDATE
-@app.route("/api/update_user/<int:id>", methods=['POST'])
+@app.route("/api/update_user/<int:id>", methods=['PATCH'])
 def updateUser(id):
     notThis = Contacts.query.get(int(id))
     if not notThis:
         return createMessage("User not found")
-    data = request.json
-    first_name = data.get("first_name", notThis.first_name)
-    last_name = data.get("last_name", notThis.last_name)
-    email = data.get("email", notThis.email)
-    notThis.first_name = first_name
-    notThis.last_name = last_name
-    notThis.email = email
-    db.session.commit()
+    # data = request.json
+    # first_name = data.get("first_name", notThis.first_name)
+    # last_name = data.get("last_name", notThis.last_name)
+    # email = data.get("email", notThis.email)
+    # notThis.first_name = first_name
+    # notThis.last_name = last_name
+    # notThis.email = email
+    # db.session.commit()
     
-    data = createCapsule([notThis])
-    return jsonify({"updated": data})
+    dataset = createCapsule([notThis])
+    return jsonify({"updated": dataset})
 
 
 #DELETE
